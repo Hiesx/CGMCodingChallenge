@@ -13,28 +13,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # Checkout the code from the repository
-    - name: Checkout code
-      uses: actions/checkout@v3
+      # Checkout the code from the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    # Set up CMake
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y cmake g++ make
+      # Install CMake and other dependencies
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y cmake g++ make
 
-    # Create a build directory and configure the project
-    - name: Configure project
-      run: |
-        cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+      # Create a build directory and configure the project
+      - name: Configure project
+        run: |
+          cmake -S CGMCodingChallenge/Challenge -B build -DCMAKE_BUILD_TYPE=Release
 
-    # Build the project
-    - name: Build project
-      run: |
-        cmake --build build -- -j$(nproc)
+      # Build the project
+      - name: Build project
+        run: |
+          cmake --build build -- -j$(nproc)
 
-    # Run the tests
-    - name: Run tests
-      run: |
-        cd build
-        ctest --output-on-failure
+      # Run the tests
+      - name: Run tests
+        run: |
+          cd build
+          ctest --output-on-failure

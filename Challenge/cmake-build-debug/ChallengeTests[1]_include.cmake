@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/User/Git/CGMCodingChallenge/Challenge/cmake-build-debug/ChallengeTests[1]_tests.cmake")
+  include("C:/Users/User/Git/CGMCodingChallenge/Challenge/cmake-build-debug/ChallengeTests[1]_tests.cmake")
+else()
+  add_test(ChallengeTests_NOT_BUILT ChallengeTests_NOT_BUILT)
+endif()

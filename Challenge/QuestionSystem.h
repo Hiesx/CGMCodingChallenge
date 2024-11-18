@@ -14,7 +14,9 @@ public:
     QuestionSystem() = default;
     ~QuestionSystem() = default;
     void insertQuestion(std::string const& question, std::vector<std::string> const& answer);
-    std::vector<std::string> getQuestion(std::string const &question) const;
+    std::vector<std::string> getAnswers(std::string const &question) const;
+    bool parseAndInsert(std::string const& input);
+
 private:
     std::map<std::string, std::vector<std::string>> qSystemMap;
 };

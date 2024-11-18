@@ -7,25 +7,33 @@ int main()
 {
     QuestionSystem qa_system;
     InputHandler inputHandler;
-    while(true)
+    while (true)
     {
         inputHandler.displayMenu();
         int choice;
-        std::cin >> choice;
+
+        if (!(std::cin >> choice))
+        {
+            std::cout << "Invalid input. Please enter a number." << std::endl;
+            std::cin.clear();
+            std::cin.ignore(1000, '\n');
+            continue;
+        }
+
         std::cin.ignore();
 
-        switch(choice)
+        switch (choice)
         {
-            case 1:
-                inputHandler.handleAsk(qa_system);
-                break;
-            case 2:
-                inputHandler.handleAdd(qa_system);
-                break;
-            case 3:
-                return EXIT_SUCCESS;
-            default:
-                std::cout << "Invalid choice" << std::endl;
+        case 1:
+            inputHandler.handleAsk(qa_system);
+            break;
+        case 2:
+            inputHandler.handleAdd(qa_system);
+            break;
+        case 3:
+            return EXIT_SUCCESS;
+        default:
+            std::cout << "Invalid choice" << std::endl;
         }
     }
 }

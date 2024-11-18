@@ -20,39 +20,25 @@ void InputHandler::handleAsk(QuestionSystem const& qa_system)
     std::string question;
     std::getline(std::cin, question);
 
-    auto answers = qa_system.getQuestion(question);
-    if (answers.empty())
+    auto answers = qa_system.getAnswers(question);
+    for (const auto& answer : answers)
     {
-        std::cout << "No answer found for the question" << std::endl;
-    }
-    else
-    {
-        for (const auto& answer : answers)
-        {
-            std::cout << answer << std::endl;
-        }
+        std::cout << answer << std::endl;
     }
 }
 
 void InputHandler::handleAdd(QuestionSystem& qa_system)
 {
-    std::cout << "Enter the question: ";
-    std::string question;
-    std::getline(std::cin, question);
+    std::cout << R"(Enter the question and answers in the format: QUESTION ? "ANSWER1" "ANSWER2" ...)" << std::endl;
+    std::string input;
+    std::getline(std::cin, input);
 
-    std::cout << "Enter the answer seperated by semicolon: ";
-    std::string answer;
-    std::getline(std::cin, answer);
-
-    std::vector<std::string> answers;
-    size_t pos = 0;
-    while ((pos = answer.find(';')) != std::string::npos)
+    if (qa_system.parseAndInsert(input))
     {
-        answers.push_back(answer.substr(0, pos));
-        answer.erase(0, pos + 1);
+        std::cout << "Question and answers added successfully." << std::endl;
     }
-    answers.push_back(answer);
-
-    qa_system.insertQuestion(question, answers);
-    std::cout << "Question added successfully" << std::endl;
+    else
+    {
+        std::cerr << "Failed to add the question and answers. Please check the format." << std::endl;
+    }
 }

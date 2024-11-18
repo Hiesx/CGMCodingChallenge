@@ -17,9 +17,12 @@ void InputHandler::displayMenu()
 void InputHandler::handleAsk(QuestionSystem const& qa_system)
 {
     std::cout << "Enter your question: ";
+
+    // Read the question from the user
     std::string question;
     std::getline(std::cin, question);
 
+    // Get the answers for the question and display them
     auto answers = qa_system.getAnswers(question);
     for (const auto& answer : answers)
     {
@@ -30,9 +33,12 @@ void InputHandler::handleAsk(QuestionSystem const& qa_system)
 void InputHandler::handleAdd(QuestionSystem& qa_system)
 {
     std::cout << R"(Enter the question and answers in the format: QUESTION ? "ANSWER1" "ANSWER2" ...)" << std::endl;
+
+    // Read the question and answers from the user
     std::string input;
     std::getline(std::cin, input);
 
+    // Parse and insert the question and answers
     if (qa_system.parseAndInsert(input))
     {
         std::cout << "Question and answers added successfully." << std::endl;

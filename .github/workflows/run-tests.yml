@@ -26,7 +26,7 @@ jobs:
       # Create a build directory and configure the project
       - name: Configure project
         run: |
-          cmake -S CGMCodingChallenge/Challenge -B build -DCMAKE_BUILD_TYPE=Release
+          cmake -S Challenge -B build -DCMAKE_BUILD_TYPE=Release
 
       # Build the project
       - name: Build project

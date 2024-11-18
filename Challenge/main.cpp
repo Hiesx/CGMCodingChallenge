@@ -12,6 +12,7 @@ int main()
         inputHandler.displayMenu();
         int choice;
 
+        // Get the user's choice and check if it's a valid number
         if (!(std::cin >> choice))
         {
             std::cout << "Invalid input. Please enter a number." << std::endl;
@@ -20,6 +21,7 @@ int main()
             continue;
         }
 
+        // Clear the input buffer
         std::cin.ignore();
 
         switch (choice)
